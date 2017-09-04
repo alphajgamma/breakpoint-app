@@ -13,6 +13,7 @@
 		A19FE63C1F5DF630002D839D /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FE63B1F5DF630002D839D /* InsetTextField.swift */; };
 		A19FE63E1F5DF91A002D839D /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FE63D1F5DF91A002D839D /* ShadowView.swift */; };
 		A19FE6401F5DFB04002D839D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FE63F1F5DFB04002D839D /* AuthService.swift */; };
+		A19FE6421F5E0F1F002D839D /* MeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FE6411F5E0F1F002D839D /* MeVC.swift */; };
 		A1FD647B1F5D48AA00D426A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD647A1F5D48AA00D426A6 /* AppDelegate.swift */; };
 		A1FD647D1F5D48AA00D426A6 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD647C1F5D48AA00D426A6 /* FeedVC.swift */; };
 		A1FD647F1F5D48AA00D426A6 /* GroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD647E1F5D48AA00D426A6 /* GroupsVC.swift */; };
@@ -33,6 +34,7 @@
 		A19FE63B1F5DF630002D839D /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		A19FE63D1F5DF91A002D839D /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		A19FE63F1F5DFB04002D839D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		A19FE6411F5E0F1F002D839D /* MeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeVC.swift; sourceTree = "<group>"; };
 		A1FD64771F5D48AA00D426A6 /* breakpoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = breakpoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1FD647A1F5D48AA00D426A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1FD647C1F5D48AA00D426A6 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				A1FD647E1F5D48AA00D426A6 /* GroupsVC.swift */,
 				A19FE6371F5DF58D002D839D /* AuthVC.swift */,
 				A19FE6391F5DF5BD002D839D /* LoginVC.swift */,
+				A19FE6411F5E0F1F002D839D /* MeVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A19FE6421F5E0F1F002D839D /* MeVC.swift in Sources */,
 				A19FE6381F5DF58D002D839D /* AuthVC.swift in Sources */,
 				A1FD647F1F5D48AA00D426A6 /* GroupsVC.swift in Sources */,
 				A19FE63A1F5DF5BD002D839D /* LoginVC.swift in Sources */,
