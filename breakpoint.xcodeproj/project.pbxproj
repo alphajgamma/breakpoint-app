@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10BDF871F5EF2F400F6119A /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10BDF861F5EF2F400F6119A /* UIViewExt.swift */; };
 		A19FE6361F5D4F2D002D839D /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FE6351F5D4F2D002D839D /* DataService.swift */; };
 		A19FE6381F5DF58D002D839D /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FE6371F5DF58D002D839D /* AuthVC.swift */; };
 		A19FE63A1F5DF5BD002D839D /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FE6391F5DF5BD002D839D /* LoginVC.swift */; };
@@ -29,6 +30,7 @@
 		06208F1C96902204444365DB /* Pods-breakpoint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breakpoint.release.xcconfig"; path = "Pods/Target Support Files/Pods-breakpoint/Pods-breakpoint.release.xcconfig"; sourceTree = "<group>"; };
 		4882E18E5B1D5F5CCA964C32 /* Pods_breakpoint.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_breakpoint.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9065116A5FC8CB229203B4E2 /* Pods-breakpoint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breakpoint.debug.xcconfig"; path = "Pods/Target Support Files/Pods-breakpoint/Pods-breakpoint.debug.xcconfig"; sourceTree = "<group>"; };
+		A10BDF861F5EF2F400F6119A /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		A19FE6351F5D4F2D002D839D /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		A19FE6371F5DF58D002D839D /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		A19FE6391F5DF5BD002D839D /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		A1FD64911F5D4AEB00D426A6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A10BDF861F5EF2F400F6119A /* UIViewExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10BDF871F5EF2F400F6119A /* UIViewExt.swift in Sources */,
 				A19FE6421F5E0F1F002D839D /* MeVC.swift in Sources */,
 				A19FE6381F5DF58D002D839D /* AuthVC.swift in Sources */,
 				A1FD647F1F5D48AA00D426A6 /* GroupsVC.swift in Sources */,
