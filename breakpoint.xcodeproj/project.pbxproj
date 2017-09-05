@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A10BDF871F5EF2F400F6119A /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10BDF861F5EF2F400F6119A /* UIViewExt.swift */; };
+		A10BDF891F5EF8D000F6119A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10BDF881F5EF8D000F6119A /* Message.swift */; };
+		A10BDF8B1F5F006300F6119A /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10BDF8A1F5F006300F6119A /* FeedCell.swift */; };
 		A19FE6361F5D4F2D002D839D /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FE6351F5D4F2D002D839D /* DataService.swift */; };
 		A19FE6381F5DF58D002D839D /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FE6371F5DF58D002D839D /* AuthVC.swift */; };
 		A19FE63A1F5DF5BD002D839D /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19FE6391F5DF5BD002D839D /* LoginVC.swift */; };
@@ -31,6 +33,8 @@
 		4882E18E5B1D5F5CCA964C32 /* Pods_breakpoint.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_breakpoint.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9065116A5FC8CB229203B4E2 /* Pods-breakpoint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breakpoint.debug.xcconfig"; path = "Pods/Target Support Files/Pods-breakpoint/Pods-breakpoint.debug.xcconfig"; sourceTree = "<group>"; };
 		A10BDF861F5EF2F400F6119A /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
+		A10BDF881F5EF8D000F6119A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A10BDF8A1F5F006300F6119A /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		A19FE6351F5D4F2D002D839D /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		A19FE6371F5DF58D002D839D /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		A19FE6391F5DF5BD002D839D /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			children = (
 				A19FE63B1F5DF630002D839D /* InsetTextField.swift */,
 				A19FE63D1F5DF91A002D839D /* ShadowView.swift */,
+				A10BDF8A1F5F006300F6119A /* FeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 		A1FD64901F5D491D00D426A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A10BDF881F5EF8D000F6119A /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -304,8 +310,10 @@
 				A19FE63A1F5DF5BD002D839D /* LoginVC.swift in Sources */,
 				A19FE6401F5DFB04002D839D /* AuthService.swift in Sources */,
 				A1FD647B1F5D48AA00D426A6 /* AppDelegate.swift in Sources */,
+				A10BDF8B1F5F006300F6119A /* FeedCell.swift in Sources */,
 				A19FE63E1F5DF91A002D839D /* ShadowView.swift in Sources */,
 				A19FE6441F5EACF7002D839D /* CreatePostVC.swift in Sources */,
+				A10BDF891F5EF8D000F6119A /* Message.swift in Sources */,
 				A1FD647D1F5D48AA00D426A6 /* FeedVC.swift in Sources */,
 				A19FE63C1F5DF630002D839D /* InsetTextField.swift in Sources */,
 				A19FE6361F5D4F2D002D839D /* DataService.swift in Sources */,
