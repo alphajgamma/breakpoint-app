@@ -73,17 +73,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="XIE-N1-fh9">
-                                                    <rect key="frame" x="18" y="18" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="18" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="2xE-cX-RBG"/>
                                                         <constraint firstAttribute="height" constant="50" id="qkF-fN-tJy"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="L2k-MH-aY3">
-                                                    <rect key="frame" x="78" y="18" width="279" height="63.5"/>
+                                                    <rect key="frame" x="0.0" y="18" width="0.0" height="63.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@breakpoint.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoS-1q-jlB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="279" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="11M-ws-wHr"/>
                                                             </constraints>
@@ -92,7 +92,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Jd2-xJ-A9s">
-                                                            <rect key="frame" x="0.0" y="23" width="279" height="40.5"/>
+                                                            <rect key="frame" x="0.0" y="23" width="0.0" height="40.5"/>
                                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
                                                             <color key="textColor" red="0.015686274510000001" green="0.6705882353" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -261,7 +261,7 @@
         <!--Group FeedVC-->
         <scene sceneID="3Fm-GI-ulZ">
             <objects>
-                <viewController id="Cks-nD-71i" customClass="GroupFeedVC" customModule="breakpoint" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupFeedVC" id="Cks-nD-71i" customClass="GroupFeedVC" customModule="breakpoint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CdY-I9-TIl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -354,7 +354,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@breakpoint.com, joeshmo@brakpoint.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="cjW-sh-71Q">
-                                <rect key="frame" x="0.0" y="78" width="375" height="16.5"/>
+                                <rect key="frame" x="16" y="78" width="343" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
                                 <color key="textColor" red="0.56078431370000004" green="0.81176470590000005" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -399,10 +399,10 @@
                             <constraint firstItem="QOQ-Cc-Fy7" firstAttribute="leading" secondItem="gRC-BZ-bpZ" secondAttribute="leading" id="3uf-tG-eAt"/>
                             <constraint firstItem="QOQ-Cc-Fy7" firstAttribute="trailing" secondItem="gRC-BZ-bpZ" secondAttribute="trailing" id="8C1-7S-1fQ"/>
                             <constraint firstItem="yTS-kU-4zh" firstAttribute="top" secondItem="cjW-sh-71Q" secondAttribute="bottom" constant="8" id="APN-yV-6Oq"/>
-                            <constraint firstItem="gRC-BZ-bpZ" firstAttribute="trailing" secondItem="cjW-sh-71Q" secondAttribute="trailing" id="QcY-cA-lso"/>
+                            <constraint firstItem="gRC-BZ-bpZ" firstAttribute="trailing" secondItem="cjW-sh-71Q" secondAttribute="trailing" constant="16" id="QcY-cA-lso"/>
                             <constraint firstItem="yTS-kU-4zh" firstAttribute="trailing" secondItem="gRC-BZ-bpZ" secondAttribute="trailing" id="WGR-ba-dw5"/>
                             <constraint firstItem="yTS-kU-4zh" firstAttribute="leading" secondItem="gRC-BZ-bpZ" secondAttribute="leading" id="ZbJ-OB-QId"/>
-                            <constraint firstItem="cjW-sh-71Q" firstAttribute="leading" secondItem="gRC-BZ-bpZ" secondAttribute="leading" id="cDO-i3-pCA"/>
+                            <constraint firstItem="cjW-sh-71Q" firstAttribute="leading" secondItem="gRC-BZ-bpZ" secondAttribute="leading" constant="16" id="cDO-i3-pCA"/>
                             <constraint firstItem="gRC-BZ-bpZ" firstAttribute="bottom" secondItem="yTS-kU-4zh" secondAttribute="bottom" id="efa-yr-dEw"/>
                             <constraint firstItem="gRC-BZ-bpZ" firstAttribute="bottom" secondItem="QOQ-Cc-Fy7" secondAttribute="bottom" id="hkv-hg-4L2"/>
                             <constraint firstItem="AY6-JX-wZK" firstAttribute="leading" secondItem="gRC-BZ-bpZ" secondAttribute="leading" id="l8T-UK-BLq"/>

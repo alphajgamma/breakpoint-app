@@ -8,9 +8,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
-class GroupFeedVC: UICollectionViewController {
+class GroupFeedVC: UIViewController {
     
     // Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -20,9 +18,23 @@ class GroupFeedVC: UICollectionViewController {
     @IBOutlet weak var messageTextField: InsetTextField!
     @IBOutlet weak var sendBtn: UIButton!
     
+    // Variables
+    var group: Group?
+    
+    func initData(forGroup group: Group) {
+        self.group = group
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         sendBtnView.bindToKeyboard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        groupTitleLbl.text = group?.groupTitle
+        DataService.instance.getEmails(forGroup: group!) { (returnedEmails) in
+            self.membersLbl.text = returnedEmails.joined(separator: ", ")
+        }
     }
 
     @IBAction func backBtnWasPressed(_ sender: Any) {
