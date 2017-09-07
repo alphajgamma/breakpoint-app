@@ -14,8 +14,7 @@ class MeFeedCell: UITableViewCell {
     @IBOutlet weak var groupTitleLbl: UILabel!
     @IBOutlet weak var messageContentLbl: UILabel!
     
-    func configureCell(groupTitle: String, messageContent: String) {
-        self.groupTitleLbl.text = groupTitle
+    func configureCell(messageContent: String) {
         self.messageContentLbl.text = messageContent
     }
 }
