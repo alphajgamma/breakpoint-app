@@ -16,15 +16,47 @@ class MeVC: UIViewController {
     @IBOutlet weak var emailLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    // Variables
+    var feedMessagesArray = [Message]()
+    var groupsArray = [Group]()
+    var groupMessagesArray = [Message]()
+    var groupTitlesArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.emailLbl.text = Auth.auth().currentUser?.email
+        feedMessagesArray = []
+        groupsArray = []
+        groupMessagesArray = []
+        DataService.instance.getAllFeedMessages { (returnedMessagesArray) in
+            self.feedMessagesArray = returnedMessagesArray.reversed()
+            self.feedMessagesArray = self.feedMessagesArray.filter({ $0.senderId == Auth.auth().currentUser?.uid })
+            self.tableView.reloadData()
+        }
+        DataService.instance.REF_GROUPS.observe(.value) { (snapshot) in
+            DataService.instance.getAllGroups { (returnedGroupsArray) in
+                self.groupsArray = returnedGroupsArray
+                for group in self.groupsArray {
+                    DataService.instance.REF_GROUPS.observe(.value) { (snapshot) in
+                        DataService.instance.getAllMessagesFor(desiredGroup: group, handler: { (returnedGroupMessages) in
+                            for message in returnedGroupMessages {
+                                if message.senderId == Auth.auth().currentUser?.uid {
+                                    self.groupTitlesArray.append(group.groupTitle)
+                                    self.groupMessagesArray.append(message)
+                                }
+                            }
+                            self.tableView.reloadData()
+                        })
+                    }
+                }
+            }
+        }
     }
 
     @IBAction func signOutBtnWasPressed(_ sender: Any) {
@@ -40,5 +72,55 @@ class MeVC: UIViewController {
         }
         logoutPopup.addAction(logoutAction)
         present(logoutPopup, animated: true, completion: nil)
+    }
+}
+
+extension MeVC: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        header.contentView.backgroundColor = #colorLiteral(red: 0.2549019608, green: 0.2705882353, blue: 0.3137254902, alpha: 1)
+        header.textLabel!.font = UIFont(name: "Menlo Regular", size: 20.0)
+        header.textLabel?.textColor = #colorLiteral(red: 0.6212110519, green: 0.8334299922, blue: 0.3770503998, alpha: 1)
+        header.textLabel?.numberOfLines = 1
+        header.textLabel?.text = header.textLabel!.text!.lowercased()
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0 :
+            return "_feed"
+        case 1 :
+            return "_groups"
+        default:
+            return "_unknown"
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return feedMessagesArray.count
+        case 1:
+            return groupMessagesArray.count
+        default:
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "meFeedCell") as? MeFeedCell else { return UITableViewCell()}
+        switch indexPath.section {
+        case 0:
+            cell.configureCell(groupTitle: "_feed", messageContent: feedMessagesArray[indexPath.row].content)
+        case 1:
+            cell.configureCell(groupTitle: groupTitlesArray[indexPath.row], messageContent: groupMessagesArray[indexPath.row].content)
+        default:
+            cell.configureCell(groupTitle: "Group Title", messageContent: "message content shown here")
+        }
+        return cell
     }
 }
