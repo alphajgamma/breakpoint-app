@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseStorageUI
 
 class GroupFeedCell: UITableViewCell {
     
@@ -19,9 +18,7 @@ class GroupFeedCell: UITableViewCell {
     func configureCell(profileImageURL: String, email: String, content: String) {
         let defaultProfileImage = UIImage(named: "defaultProfileImage")
         if profileImageURL != "" {
-            let profileImageRef = Storage.storage().reference(forURL: profileImageURL)
-            SDImageCache.shared().removeImage(forKey: profileImageURL, fromDisk: true, withCompletion: nil)
-            self.profileImage.sd_setImage(with: profileImageRef, placeholderImage: defaultProfileImage)
+            DataService.instance.setProfileImage(forImageView: self.profileImage, withprofileImageURL: profileImageURL)
         } else {
             self.profileImage.image = defaultProfileImage
         }

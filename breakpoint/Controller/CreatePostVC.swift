@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseStorageUI
 
 class CreatePostVC: UIViewController {
     
@@ -30,10 +29,7 @@ class CreatePostVC: UIViewController {
         DataService.instance.REF_USERS.observe(.value) { (snapshot) in
             DataService.instance.getUser(forUID: (Auth.auth().currentUser?.uid)!, handler: { (returnedUser) in
                 if let profileImageURL = returnedUser.childSnapshot(forPath: "profileImageURL").value as? String {
-                    let defaultProfileImage = UIImage(named: "defaultProfileImage")
-                    let profileImageRef = Storage.storage().reference(forURL: profileImageURL)
-                    SDImageCache.shared().removeImage(forKey: profileImageURL, fromDisk: true, withCompletion: nil)
-                    self.profileImage.sd_setImage(with: profileImageRef, placeholderImage: defaultProfileImage)
+                    DataService.instance.setProfileImage(forImageView: self.profileImage, withprofileImageURL: profileImageURL)
                 }
             })
         }

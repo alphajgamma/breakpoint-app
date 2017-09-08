@@ -68,13 +68,13 @@ class MeVC: UIViewController {
         let changePicturePopup = UIAlertController(title: "Change Profile Image", message: "Take or Select an image?", preferredStyle: .actionSheet)
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let cameraAction = UIAlertAction(title: "Take Photo", style: .default) { (buttonTapped) in
-                self.getProfileImage(sourceType: .camera)
+                self.captureProfileImage(sourceType: .camera)
             }
             changePicturePopup.addAction(cameraAction)
         }
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let selectPictureAction = UIAlertAction(title: "Select From Library", style: .default) { (buttonTapped) in
-                self.getProfileImage(sourceType: .photoLibrary)
+                self.captureProfileImage(sourceType: .photoLibrary)
             }
             changePicturePopup.addAction(selectPictureAction)
         }
@@ -86,11 +86,9 @@ class MeVC: UIViewController {
             let errorAlert = UIAlertController(title: "Error", message: "There are no available source types to get an image", preferredStyle: .alert)
             present(errorAlert, animated: true, completion: nil)
         }
-        // upload picture code
-        // download and display picture code
     }
     
-    func getProfileImage(sourceType: UIImagePickerControllerSourceType){
+    func captureProfileImage(sourceType: UIImagePickerControllerSourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = sourceType
@@ -98,6 +96,7 @@ class MeVC: UIViewController {
             imagePicker.cameraDevice = .front
         }
         imagePicker.allowsEditing = true
+        imagePicker
         self.present(imagePicker, animated: true, completion: nil)
     }
     
@@ -106,6 +105,8 @@ class MeVC: UIViewController {
         let logoutAction = UIAlertAction(title: "Logout?", style: .destructive) { (buttonTapped) in
             do {
                 try Auth.auth().signOut()
+                let defaultProfileImage = UIImage(named: "defaultProfileImage")
+                self.profileImage.image = defaultProfileImage
                 let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC") as? AuthVC
                 self.present(authVC!, animated: true, completion: nil)
             } catch {
@@ -155,7 +156,14 @@ extension MeVC: UITableViewDelegate, UITableViewDataSource {
 
 extension MeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        var image = UIImage()
+        if picker.sourceType == .camera {
+            let capturedImage =  info[UIImagePickerControllerEditedImage] as! UIImage
+            let flippedImage = capturedImage.imageFlippedForRightToLeftLayoutDirection()
+            image = flippedImage
+        } else {
+            image = info[UIImagePickerControllerEditedImage] as! UIImage
+        }
         self.profileImage.image = image
         DataService.instance.uploadProfileImage(withImage: image, andOldProfileImageURL: self.profileImageURL) { (uploadComplete) in
             if uploadComplete {

@@ -22,6 +22,18 @@ class LoginVC: UIViewController {
     }
 
     @IBAction func signInBtnWasPressed(_ sender: Any) {
+        signIn()
+    }
+    
+    @IBAction func emailTextFieldPrimaryActionTriggered(_ sender: Any) {
+        self.emailField.resignFirstResponder()
+        self.passwordField.becomeFirstResponder()
+    }
+    @IBAction func passwordTextFieldPrimaryActionTriggered(_ sender: Any) {
+        signIn()
+    }
+    
+    func signIn() {
         if emailField.text != nil && passwordField.text != nil {
             AuthService.instance.loginUser(withEmail: emailField.text!, andPassword: passwordField.text!, loginComplete: { (success, loginError) in
                 if success {
