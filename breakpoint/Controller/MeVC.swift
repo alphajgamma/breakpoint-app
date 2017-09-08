@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
-class MeVC: UIViewController {
+class MeVC: UIViewController, GIDSignInUIDelegate {
     
     // Outlets
     @IBOutlet weak var profileImage: UIImageView!
@@ -28,6 +29,7 @@ class MeVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,6 +106,7 @@ class MeVC: UIViewController {
         let logoutAction = UIAlertAction(title: "Logout?", style: .destructive) { (buttonTapped) in
             do {
                 try Auth.auth().signOut()
+                GIDSignIn.sharedInstance().signOut()
                 let defaultProfileImage = UIImage(named: "defaultProfileImage")
                 self.profileImage.image = defaultProfileImage
                 let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC") as? AuthVC
