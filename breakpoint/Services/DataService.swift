@@ -38,13 +38,20 @@ class DataService {
     
     func uploadProfileImage(withImage image: UIImage, andOldProfileImageURL oldImageURL: String?, uploadComplete: @escaping (_ status: Bool) -> ()) {
         if oldImageURL != nil && oldImageURL != "" {
+            let fileNameDate = oldImageURL!.components(separatedBy: "/").last?.components(separatedBy: "%2").last?.components(separatedBy: "?").first?.components(separatedBy: "-").last
+            let fileName = "\((Auth.auth().currentUser?.uid)!)-\(fileNameDate!)"
+            REF_STORAGE_PROFILE_PHOTOS.child(fileName).delete(completion: { (error) in
+                if error != nil {
+                    debugPrint("Error deleting file: \(error!.localizedDescription)")
+                }
+            })
             SDImageCache.shared().removeImage(forKey: oldImageURL, fromDisk: true, withCompletion: nil)
         }
         let data = UIImageJPEGRepresentation(image, 0.25) as NSData?
         let uploadDateFormatter = DateFormatter()
         uploadDateFormatter.dateFormat = "yyyyMMddHHmmss"
         let uploadDate = uploadDateFormatter.string(from: Date())
-        let profileImageRef = REF_STORAGE.child("profileImages/\((Auth.auth().currentUser?.uid)!)-\(uploadDate).jpg")
+        let profileImageRef = REF_STORAGE_PROFILE_PHOTOS.child("\((Auth.auth().currentUser?.uid)!)-\(uploadDate).jpg")
         let uploadTask = profileImageRef.putData(data! as Data, metadata: nil) { (metadata, error) in
             guard let metadata = metadata else {
                 // Uh-oh, an error occurred!
