@@ -61,7 +61,6 @@ class MeVC: UIViewController {
                 }
             })
         }
-        
     }
 
     @IBAction func changePictureBtnWasPressed(_ sender: Any) {
@@ -96,7 +95,7 @@ class MeVC: UIViewController {
             imagePicker.cameraDevice = .front
         }
         imagePicker.allowsEditing = true
-        imagePicker
+        
         self.present(imagePicker, animated: true, completion: nil)
     }
     
@@ -159,7 +158,7 @@ extension MeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate 
         var image = UIImage()
         if picker.sourceType == .camera {
             let capturedImage =  info[UIImagePickerControllerEditedImage] as! UIImage
-            let flippedImage = capturedImage.imageFlippedForRightToLeftLayoutDirection()
+            let flippedImage = UIImage.init(cgImage: capturedImage.cgImage!, scale: 10, orientation: UIImageOrientation.upMirrored)
             image = flippedImage
         } else {
             image = info[UIImagePickerControllerEditedImage] as! UIImage

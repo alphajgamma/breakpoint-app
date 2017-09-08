@@ -42,9 +42,9 @@ class DataService {
         }
         let data = UIImageJPEGRepresentation(image, 0.25) as NSData?
         let uploadDateFormatter = DateFormatter()
-        uploadDateFormatter.locale = Locale(identifier: "en_GB")
-        uploadDateFormatter.setLocalizedDateFormatFromTemplate("yyyyMMddHHmmss")
-        let profileImageRef = REF_STORAGE.child("profileImages/\((Auth.auth().currentUser?.uid)!)-\(uploadDateFormatter.string(from: Date())).jpg")
+        uploadDateFormatter.dateFormat = "yyyyMMddHHmmss"
+        let uploadDate = uploadDateFormatter.string(from: Date())
+        let profileImageRef = REF_STORAGE.child("profileImages/\((Auth.auth().currentUser?.uid)!)-\(uploadDate).jpg")
         let uploadTask = profileImageRef.putData(data! as Data, metadata: nil) { (metadata, error) in
             guard let metadata = metadata else {
                 // Uh-oh, an error occurred!
