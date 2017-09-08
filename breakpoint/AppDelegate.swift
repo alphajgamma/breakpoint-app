@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let authVC = storyboard.instantiateViewController(withIdentifier: "AuthVC")
             window?.makeKeyAndVisible()
             window?.rootViewController?.present(authVC, animated: true, completion: nil)
-        }
+        } 
         
         return true
     }

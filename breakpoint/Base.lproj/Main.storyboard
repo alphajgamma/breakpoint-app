@@ -71,18 +71,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="XIE-N1-fh9">
-                                                    <rect key="frame" x="0.0" y="18" width="50" height="50"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="XIE-N1-fh9" customClass="CircleImage" customModule="breakpoint" customModuleProvider="target">
+                                                    <rect key="frame" x="18" y="18" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="2xE-cX-RBG"/>
                                                         <constraint firstAttribute="height" constant="50" id="qkF-fN-tJy"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="L2k-MH-aY3">
-                                                    <rect key="frame" x="0.0" y="18" width="0.0" height="63.5"/>
+                                                    <rect key="frame" x="78" y="18" width="279" height="63.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@breakpoint.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoS-1q-jlB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="279" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="11M-ws-wHr"/>
                                                             </constraints>
@@ -91,7 +91,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Jd2-xJ-A9s">
-                                                            <rect key="frame" x="0.0" y="23" width="0.0" height="40.5"/>
+                                                            <rect key="frame" x="0.0" y="23" width="279" height="40.5"/>
                                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
                                                             <color key="textColor" red="0.015686274510000001" green="0.6705882353" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -304,18 +304,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="mE0-fi-fsA">
-                                                    <rect key="frame" x="0.0" y="18" width="50" height="50"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="mE0-fi-fsA" customClass="CircleImage" customModule="breakpoint" customModuleProvider="target">
+                                                    <rect key="frame" x="18" y="18" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="9KH-nj-b7Q"/>
                                                         <constraint firstAttribute="height" constant="50" id="9g0-iS-4PG"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="GhH-rZ-LNw">
-                                                    <rect key="frame" x="0.0" y="18" width="0.0" height="63.5"/>
+                                                    <rect key="frame" x="78" y="18" width="279" height="63.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@breakpoint.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMo-hQ-Gli">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="279" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="RU3-aF-E0e"/>
                                                             </constraints>
@@ -324,7 +324,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Wye-hS-EwX">
-                                                            <rect key="frame" x="0.0" y="23" width="0.0" height="40.5"/>
+                                                            <rect key="frame" x="0.0" y="23" width="279" height="40.5"/>
                                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
                                                             <color key="textColor" red="0.015686274510000001" green="0.6705882353" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -537,7 +537,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="eK3-mg-Yc3">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="eK3-mg-Yc3" customClass="CircleImage" customModule="breakpoint" customModuleProvider="target">
                                                             <rect key="frame" x="18" y="8" width="44" height="44"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="44" id="MGh-pP-Zlo"/>
@@ -651,15 +651,17 @@
                                 <rect key="frame" x="0.0" y="70" width="375" height="275"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSR-Bf-dgO">
-                                        <rect key="frame" x="136" y="30" width="103" height="120"/>
+                                        <rect key="frame" x="137.5" y="30" width="100" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="O7T-fA-POl"/>
-                                            <constraint firstAttribute="width" constant="103" id="UsZ-RZ-wJ0"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
                                         <state key="normal" title="change picture"/>
+                                        <connections>
+                                            <action selector="changePictureBtnWasPressed:" destination="hvL-IQ-As0" eventType="touchUpInside" id="GbC-12-zaL"/>
+                                        </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="T0A-PP-eTR">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="T0A-PP-eTR" customClass="CircleImage" customModule="breakpoint" customModuleProvider="target">
                                         <rect key="frame" x="137" y="30" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="4IU-Iz-OZy"/>
@@ -682,6 +684,7 @@
                                     <constraint firstItem="XLW-mB-Sr2" firstAttribute="top" secondItem="T0A-PP-eTR" secondAttribute="bottom" constant="30" id="JIO-cG-1en"/>
                                     <constraint firstItem="T0A-PP-eTR" firstAttribute="top" secondItem="Uxz-Ax-dID" secondAttribute="top" constant="30" id="ROC-G0-mla"/>
                                     <constraint firstItem="T0A-PP-eTR" firstAttribute="centerX" secondItem="Uxz-Ax-dID" secondAttribute="centerX" id="Vdu-co-evt"/>
+                                    <constraint firstItem="JSR-Bf-dgO" firstAttribute="width" secondItem="T0A-PP-eTR" secondAttribute="width" id="c4P-JA-JLV"/>
                                     <constraint firstItem="JSR-Bf-dgO" firstAttribute="centerX" secondItem="Uxz-Ax-dID" secondAttribute="centerX" id="gLf-LP-gS9"/>
                                     <constraint firstItem="XLW-mB-Sr2" firstAttribute="centerX" secondItem="Uxz-Ax-dID" secondAttribute="centerX" id="gbK-LB-9ca"/>
                                     <constraint firstItem="JSR-Bf-dgO" firstAttribute="top" secondItem="Uxz-Ax-dID" secondAttribute="top" constant="30" id="mB9-op-ylI"/>
@@ -999,7 +1002,7 @@
                                     <constraint firstAttribute="height" constant="70" id="l8N-eR-b5Z"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="dGZ-ah-0Zt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="dGZ-ah-0Zt" customClass="CircleImage" customModule="breakpoint" customModuleProvider="target">
                                 <rect key="frame" x="20" y="90" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="72X-hd-Mi9"/>

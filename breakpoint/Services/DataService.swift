@@ -8,32 +8,19 @@
 
 import Foundation
 import Firebase
+import FirebaseStorageUI
 
 let DB_BASE = Database.database().reference()
 
 class DataService {
     static let instance = DataService()
     
-    private var _REF_BASE = DB_BASE
-    private var _REF_USERS = DB_BASE.child("users")
-    private var _REF_GROUPS = DB_BASE.child("groups")
-    private var _REF_FEED = DB_BASE.child("feed")
-    
-    var REF_BASE: DatabaseReference {
-        return _REF_BASE
-    }
-    
-    var REF_USERS: DatabaseReference {
-        return _REF_USERS
-    }
-    
-    var REF_GROUPS: DatabaseReference {
-        return _REF_GROUPS
-    }
-    
-    var REF_FEED: DatabaseReference {
-        return _REF_FEED
-    }
+    private(set) var REF_BASE = DB_BASE
+    private(set) var REF_USERS = DB_BASE.child("users")
+    private(set) var REF_GROUPS = DB_BASE.child("groups")
+    private(set) var REF_FEED = DB_BASE.child("feed")
+    private(set) var REF_STORAGE = Storage.storage().reference()
+    private(set) var REF_STORAGE_PROFILE_PHOTOS = Storage.storage().reference().child("profileImages")
     
     func createDBUser(uid: String, userData: Dictionary<String, Any>) {
         REF_USERS.child(uid).updateChildValues(userData)
@@ -47,6 +34,43 @@ class DataService {
             REF_FEED.childByAutoId().updateChildValues(["content": message, "senderId": uid])
             sendComplete(true)
         }
+    }
+    
+    func uploadProfileImage(withImage image: UIImage, andOldProfileImageURL oldImageURL: String?, uploadComplete: @escaping (_ status: Bool) -> ()) {
+        if oldImageURL != nil && oldImageURL != "" {
+            SDImageCache.shared().removeImage(forKey: oldImageURL, fromDisk: true, withCompletion: nil)
+        }
+        let data = UIImageJPEGRepresentation(image, 0.25) as NSData?
+        let uploadDateFormatter = DateFormatter()
+        uploadDateFormatter.locale = Locale(identifier: "en_GB")
+        uploadDateFormatter.setLocalizedDateFormatFromTemplate("yyyyMMddHHmmss")
+        let profileImageRef = REF_STORAGE.child("profileImages/\((Auth.auth().currentUser?.uid)!)-\(uploadDateFormatter.string(from: Date())).jpg")
+        let uploadTask = profileImageRef.putData(data! as Data, metadata: nil) { (metadata, error) in
+            guard let metadata = metadata else {
+                // Uh-oh, an error occurred!
+                print("Error uploading")
+                return
+            }
+            // Metadata contains file metadata such as size, content-type, and download URL.
+            let downloadURL = metadata.downloadURL
+            self.setProfileImageURL(withDownloadURL: (downloadURL()?.absoluteString)!)
+        }
+        uploadTask.observe(.success) { (snapshot) in
+            uploadComplete(true)
+        }
+        uploadTask.observe(.failure) { (snapshot) in
+            uploadComplete(false)
+        }
+    }
+    
+    func setProfileImageURL(withDownloadURL url: String) {
+        REF_USERS.child((Auth.auth().currentUser?.uid)!).updateChildValues(["profileImageURL": url])
+    }
+    
+    func setProfileImage(forImageView imageView: UIImageView, withprofileImageURL profileImageURL: String) {
+        let defaultProfileImage = UIImage(named: "defaultProfileImage")
+        let profileImageRef = Storage.storage().reference(forURL: profileImageURL)
+        imageView.sd_setImage(with: profileImageRef, placeholderImage: defaultProfileImage, completion: nil)
     }
     
     func getAllFeedMessages(handler: @escaping (_ messages: [Message]) -> ()) {
@@ -85,6 +109,17 @@ class DataService {
             for user in userSnapshot {
                 if user.key == uid {
                     handler(user.childSnapshot(forPath: "email").value as! String)
+                }
+            }
+        }
+    }
+    
+    func getUser(forUID uid: String, handler: @escaping (_ user: DataSnapshot) -> ()) {
+        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            for user in userSnapshot {
+                if user.key == uid {
+                    handler(user)
                 }
             }
         }
