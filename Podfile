@@ -12,4 +12,6 @@ target 'breakpoint' do
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
   pod 'GoogleSignIn'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
 end

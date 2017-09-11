@@ -104,15 +104,16 @@ class MeVC: UIViewController, GIDSignInUIDelegate {
     @IBAction func signOutBtnWasPressed(_ sender: Any) {
         let logoutPopup = UIAlertController(title: "Logout?", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
         let logoutAction = UIAlertAction(title: "Logout?", style: .destructive) { (buttonTapped) in
+            let firebaseAuth = Auth.auth()
             do {
-                try Auth.auth().signOut()
+                try firebaseAuth.signOut()
                 GIDSignIn.sharedInstance().signOut()
                 let defaultProfileImage = UIImage(named: "defaultProfileImage")
                 self.profileImage.image = defaultProfileImage
                 let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC") as? AuthVC
                 self.present(authVC!, animated: true, completion: nil)
-            } catch {
-                print(error)
+            } catch let signOutError as NSError {
+                print("Error signing out: \(signOutError.localizedDescription)")
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

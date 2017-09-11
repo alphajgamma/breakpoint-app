@@ -10,23 +10,21 @@ import UIKit
 import Firebase
 import FirebaseStorageUI
 import GoogleSignIn
+import FacebookCore
+import FacebookLogin
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         FirebaseApp.configure()
-        GIDSignIn.sharedInstance().signOut()
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("Error signing out of Firebase")
-        }
+        
+        //Google sign in setup
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        
+
         if Auth.auth().currentUser == nil {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let authVC = storyboard.instantiateViewController(withIdentifier: "AuthVC")
@@ -35,33 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
         
         return true
-    }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            debugPrint("Error signing in: \(error.localizedDescription)")
-            return
-        }
-        
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        let email = user.profile.email
-        Auth.auth().signIn(with: credential) { (user, error) in
-            guard let user = user else {
-                return
-            }
-            let userData = ["provider": user.providerID, "email": email as Any]
-            DataService.instance.createDBUser(uid: user.uid, userData: userData)
-        }
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        print("********* USER DISCONNECTED ****************")
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -80,12 +51,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        // Call the 'activate' method to log an app event for use
+        // in analytics and advertising reporting.
+        AppEventsLogger.activate(application)
+        // ...
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
+extension AppDelegate: GIDSignInDelegate {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            debugPrint("Error signing in: \(error.localizedDescription)")
+            return
+        }
+        
+        print("Logged in via google! Logged in user is \(user.profile.email)")
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
+        // Sign in to Firebase
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if let error = error {
+                print("Sign in with Google credential error: \(error.localizedDescription)")
+                return
+            }
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
+}
